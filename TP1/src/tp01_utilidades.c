@@ -7,7 +7,13 @@
 
 #include "tp01_utilidades.h"
 #define BTC 4793339.23
-
+/**
+ * @fn void precioVuelos(float*, float*)
+ * @brief
+ *
+ * @param aerolinea
+ * @param aerolineab
+ */
 void precioVuelos(float * aerolinea, float* aerolineab)
 {
 	int opcion;

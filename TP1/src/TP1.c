@@ -83,7 +83,7 @@ int main(){
 				if(debitoAero != 0 && debitoLatam != 0)
 				{
 					system("cls");
-					printf("\nKM ingresados: %.2f\n KM",kmIngresados);
+					printf("\nKM ingresados: %.2f KM\n",kmIngresados);
 					mostrarCostos("\nAerolineas", precioAerolineas, debitoAero, creditoAero, btcAero, pUnitarioAero);
 					mostrarCostos("\nLatam", precioLatam, debitoLatam, creditoLatam, btcLatam, pUnitarioLatam);
 					mostrarDiferencia(precioAerolineas, precioLatam);
@@ -95,7 +95,17 @@ int main(){
 
 				break;
 			case 5:
-
+				kmIngresados = 7090;
+				precioAerolineas = 162965;
+				precioLatam = 159339;
+				calcularCostos(precioAerolineas, kmIngresados, &debitoAero, &creditoAero, &btcAero, &pUnitarioAero);
+				calcularCostos(precioLatam, kmIngresados, &debitoLatam, &creditoLatam, &btcLatam, &pUnitarioLatam);
+				system("cls");
+				printf("\nKM ingresados: %.2f KM\n",kmIngresados);
+				mostrarCostos("\nAerolineas", precioAerolineas, debitoAero, creditoAero, btcAero, pUnitarioAero);
+				mostrarCostos("\nLatam", precioLatam, debitoLatam, creditoLatam, btcLatam, pUnitarioLatam);
+				mostrarDiferencia(precioAerolineas, precioLatam);
+				system("pause");
 				break;
 			default:
 				return 0;
