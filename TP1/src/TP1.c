@@ -38,14 +38,7 @@ int main(){
 
 	do
 	{
-		printf("--------------------------------\n");
-		printf("1. Ingresar Kilometros (KM = %.0f KM)\n", kmIngresados);
-		printf("2. Ingresar Precio de Vuelos: (Aerolineas= $%.2f, Latam= $%.2f)\n", precioAerolineas, precioLatam);
-		printf("3. Calcular todos los costos\n");
-		printf("4. Informar Resultados\n");
-		printf("5. Carga forzada de datos\n");
-		printf("6. Salir\n");
-		printf("--------------------------------\n");
+		printf("--------------------------------\n1. Ingresar Kilometros (KM = %.0f KM)\n2. Ingresar Precio de Vuelos: (Aerolineas= $%.2f, Latam= $%.2f)\n3. Calcular todos los costos\n4. Informar Resultados\n5. Carga forzada de datos\n6. Salir\n--------------------------------\n", kmIngresados, precioAerolineas, precioLatam);
 		getIntRange("\nIngrese una opcion: ", 3, 1, 6, "\nIngrese una opcion valida: ", &opcion);
 		system("cls");
 
@@ -112,7 +105,6 @@ int main(){
 		}
 
 	} while(opcion != 6);
-
 
 	return 0;
 }

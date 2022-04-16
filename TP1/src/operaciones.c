@@ -147,18 +147,60 @@ int getFloatPositive(float *pNum, char mensaje[], char mensajeError[], int inten
 		return rtn;
 
 }
+
+
+/**
+ * @fn float sumFloat(float, float)
+ * @brief
+ * Suma dos variables tipo float y retorna el resultado
+ * @pre
+ * @post
+ * @param a
+ * @param b
+ * @return
+ */
 float sumFloat(float a, float b)
 {
 	return a + b;
 }
+/**
+ * @fn float subsFloat(float, float)
+ * @brief
+ * Resta dos variables tipo float y devuelve el resultado
+ * @pre
+ * @post
+ * @param a
+ * @param b
+ * @return
+ */
 float subsFloat(float a, float b)
 {
 	return a - b;
 }
+/**
+ * @fn float multFloat(float, float)
+ * @brief
+ * Multiplica dos variables tipo float y retorna el resultado
+ * @pre
+ * @post
+ * @param a
+ * @param b
+ * @return
+ */
 float multFloat(float a, float b)
 {
 	return a * b;
 }
+/**
+ * @fn float divFloat(float, float)
+ * @brief
+ * Divide dos variables tipo float y retorna el resultado. Si el divisor es 0 retorna 0
+ * @pre
+ * @post
+ * @param a
+ * @param b
+ * @return
+ */
 float divFloat(float a, float b)
 {
 	if (b == 0)
