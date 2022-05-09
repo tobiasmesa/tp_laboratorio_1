@@ -265,3 +265,65 @@ int utn_getString(char* pResultado, int longitud,char* mensaje, char* mensajeErr
 	}
 	return retorno;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int esAlfanumerica(char* cadena,int longitud){
+	int i=0;
+	int retorno = 1;
+
+	if(cadena != NULL && longitud > 0){
+		for(i=0 ; cadena[i] != '\0' && i < longitud; i++){
+			if((cadena[i] < 'A' || cadena[i] > 'Z' ) &&
+					(cadena[i] < 'a' || cadena[i] > 'z' ) &&
+					(cadena[i] > '9' || cadena[i] < '0')){
+				retorno = 0;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
+
+
+int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos)
+{
+	char bufferString[4096];
+		int retorno = -1;
+		while(reintentos>=0){
+			reintentos--;
+			printf("%s",mensaje);
+			if(esAlfanumerica(bufferString,sizeof(bufferString)) == 0 &&
+					strnlen(bufferString,sizeof(bufferString)) < longitud ){
+				strncpy(pResultado,bufferString,longitud);
+				retorno = 0;
+				break;
+			}
+			printf("%s",mensajeError);
+		}
+		return retorno;
+}
