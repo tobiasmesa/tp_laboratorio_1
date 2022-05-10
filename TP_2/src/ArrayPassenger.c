@@ -225,11 +225,11 @@ int loadPassenger(void)
 
 	if(utn_getString(aux.name, sizeof(aux.name), "\nIngrese el nombre del pasajero: ", "\nIngrese el nombre correctamente: ", 3) == 0
 			&& utn_getString(aux.lastname, sizeof(aux.lastname), "\nIngrese el apellido del pasajero: ", "\nIngrese el apellido nuevamente: ", 3) == 0
-			&& utn_getNumeroFlotante(aux.price, "\nIngrese el precio del vuelo: " , "Ingrese el precio nuevamente: ", 0, MAX_PRECIO, 3) == 0
+			&& utn_getNumeroFlotante(&aux.price, "\nIngrese el precio del vuelo: " , "Ingrese el precio nuevamente: ", 0, MAX_PRECIO, 3) == 0
 			&& utn_getAlfaNum(aux.flycode, sizeof(aux.flycode), "\nIngrese el codigo del vuelo: ", "\nIngrese el codigo correctamente: ", 3)
-			&& utn_getNumeroRange(aux.statusFlight, "\nIngrese el estado del vuelo", mensajeError, minimo, maximo, reintentos))
+			&& utn_getNumeroRange(&aux.statusFlight, "\nIngrese el estado del vuelo", "Ingresar estado de vuelo correctamente", 0, 5, 3) == 0)
 	{
-
+//////////SEGUIR DESDE ACA - ESTADOS DE VUELO Y CREAR STRUCTURA APÁRTE PARA LOS VUELOS!!!
 	}
 
 	return rtn;

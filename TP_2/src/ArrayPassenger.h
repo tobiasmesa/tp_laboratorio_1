@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <String.h>
+#include "utn.h"
 
 #define MAX_PRECIO 100000
 
@@ -39,7 +40,7 @@ int findPassengerById(Passenger aPassenger[], int len, int id);
 int removePassenger(Passenger aPassenger[], int len, int id);
 int sortPassenger(Passenger aPassenger[], int len, int order);
 int sortPassengerByCode(Passenger aPassenger[], int len, int order);
-
+int loadPassenger(void);
 
 
 int printAllPassengers(Passenger aPassengers[], int len);

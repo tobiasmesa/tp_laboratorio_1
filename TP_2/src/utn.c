@@ -272,26 +272,6 @@ int utn_getString(char* pResultado, int longitud,char* mensaje, char* mensajeErr
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int esAlfanumerica(char* cadena,int longitud){
 	int i=0;
 	int retorno = 1;
@@ -310,6 +290,24 @@ int esAlfanumerica(char* cadena,int longitud){
 }
 
 
+
+static int getNombreAlfanumerico(char* pResultado, int longitud){
+    int retorno=-1;
+    char buffer[4096];
+
+    if(pResultado != NULL){
+    	if(	getString(buffer,sizeof(buffer))==0 &&
+    		esAlfanumerica(buffer,sizeof(buffer)) &&
+			strnlen(buffer,sizeof(buffer))<longitud){
+    		strncpy(pResultado,buffer,longitud);
+			retorno = 0;
+		}
+    }
+    return retorno;
+}
+
+
+
 int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos)
 {
 	char bufferString[4096];
@@ -317,7 +315,7 @@ int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeEr
 		while(reintentos>=0){
 			reintentos--;
 			printf("%s",mensaje);
-			if(esAlfanumerica(bufferString,sizeof(bufferString)) == 0 &&
+			if(getNombreAlfanumerico(bufferString,sizeof(bufferString)) == 0 &&
 					strnlen(bufferString,sizeof(bufferString)) < longitud ){
 				strncpy(pResultado,bufferString,longitud);
 				retorno = 0;
@@ -327,3 +325,5 @@ int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeEr
 		}
 		return retorno;
 }
+
+

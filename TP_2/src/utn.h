@@ -12,18 +12,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-int utn_getString(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
+
 int utn_getNumeroRange(int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
 int utn_getNumeroFlotante(float* pResultado, char* mensaje, char* mensajeError, float minimo, float maximo, int reintentos);
 int myGets(char* cadena, int longitud);
-
 int esNumerica(char* cadena, int limite);
 int getInt(int* pResultado);
 
+int utn_getString(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 int esTexto(char* cadena,int longitud);
 int getString(char* cadena, int longitud);
-
 int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 int esAlfanumerica(char* cadena,int longitud);
-
 #endif /* UTN_H_ */

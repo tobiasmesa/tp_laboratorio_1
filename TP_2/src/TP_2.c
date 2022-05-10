@@ -20,7 +20,7 @@ int main(void) {
 	puts("TP2"); /* prints TO2 */
 	Passenger arrayPassengers[Q_PASSENGERS];
 	initPassengers(arrayPassengers, Q_PASSENGERS);
-
+	char texto[40];
 	int option;
 	do
 	{
@@ -34,7 +34,7 @@ int main(void) {
 		switch(option)
 		{
 		case 1:
-
+			utn_getAlfaNum(texto, sizeof(texto), "ingrese alfanum: ", "\n otra ves", 3);
 			break;
 		case 2:
 			break;
