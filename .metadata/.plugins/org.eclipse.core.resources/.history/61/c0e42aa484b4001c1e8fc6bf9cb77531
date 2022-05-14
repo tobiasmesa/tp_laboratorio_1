@@ -1,0 +1,17 @@
+/*
+ * utilities.h
+ *
+ *  Created on: 4 abr. 2022
+ *      Author: tobic
+ */
+
+#ifndef UTILITIES_H_
+#define UTILITIES_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "utilities.h"
+
+
+
+#endif /* UTILITIES_H_ */

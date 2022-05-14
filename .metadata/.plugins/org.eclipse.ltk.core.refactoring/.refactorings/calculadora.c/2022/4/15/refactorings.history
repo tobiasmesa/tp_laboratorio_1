@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;calculadora.c/src/calculadora.c.c&apos; to &apos;calculadora.c&apos;" description="Rename resource &apos;calculadora.c.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/calculadora.c.c" name="calculadora.c" stamp="1649196758079" updateReferences="true"/>
+</session>

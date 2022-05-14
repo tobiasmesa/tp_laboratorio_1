@@ -1,0 +1,5 @@
+21:53:07 **** Incremental Build of configuration Debug for project TP_2 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\TP_2.o" "..\\src\\TP_2.c" 
+gcc -o TP_2.exe "src\\ArrayPassenger.o" "src\\TP_2.o" "src\\utn.o" 
+Info: Nothing to build for TP_2

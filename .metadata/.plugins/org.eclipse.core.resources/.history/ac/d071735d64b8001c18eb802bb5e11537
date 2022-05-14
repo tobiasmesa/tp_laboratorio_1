@@ -1,0 +1,50 @@
+/*
+ * tp01_utilidades.c
+ *
+ *  Created on: 9 abr. 2022
+ *      Author: tobic
+ */
+
+#include "tp01_utilidades.h"
+#define BTC 4606954.55
+
+void precioVuelos(float * aerolinea, float* aerolineab)
+{
+	int opcion;
+	getIntRange("Ingrese la aerolinea a la que ingresara su precio: \n 1. Aerolineas.\n 2. Latam.\nOpcion: ", 3, 1, 2, "\nIngrese una opcion valida: \n", &opcion);
+	if(opcion == 1)
+	{
+		getFloatPositive(aerolinea, "\nPrecio vuelo Aerolineas: ", "\nIngrese un precio valido: ", 10);
+	} else
+	{
+		getFloatPositive(aerolineab, "\nPrecio vuelo Latam: ", "\nIngrese un precio valido: ", 10);
+	}
+
+}
+
+
+void calcularCostos(float precio, float km, float *debito, float *credito, float *btc, float *pUnitario)
+{
+	debito = subsFloat(precio, multFloat(precio, divFloat(10, 100)));
+	credito = sumFloat(precio,multFloat(precio,divFloat(25, 100)));
+	btc = divFloat(precio, BTC);
+	pUnitario = divFloat(precio, km);
+}
+
+void mostrarCostos(char aerolinea[],float precio, float debito, float credito, float btc, float pUnitario)
+{
+	printf("%s:\na) Precio con tarjeta de debito: $%.2f\nb) Precio con tarjeta de credito: $%.2f\nc) Precio pagando con bitcoin : $%.2f\nd) Precio unitario: $%.2f\n", aerolinea, debito, credito, btc, pUnitario);
+}
+
+void mostrarDiferencia(float aerolineaA, float aerolineaB)
+{
+	if(aerolineaA > aerolineaB)
+	{
+		printf("\nLa diferencia es: %f\n", subsFloat(aerolineaA, aerolineaB));
+	} else if (aerolineaA < aerolineaB){
+		printf("\nLa diferencia es: %f\n", subsFloat(aerolineaB, aerolineaA));
+	} else
+	{
+		printf("\nLa diferencia es: 0");
+	}
+}

@@ -1,0 +1,20 @@
+/*
+ ============================================================================
+ Name        : clase19-4.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : TP1 Laboratorio 1
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "utn.h"
+int main(void) {
+	setbuf(stdout, NULL);
+	printf("Ingrese un numero");
+	int a;
+	utn_getNumeroRange(a, "Ingrese un numero", "El numero ingresado esta mail", 1,  10, 3);
+	printf("%d", a);
+}

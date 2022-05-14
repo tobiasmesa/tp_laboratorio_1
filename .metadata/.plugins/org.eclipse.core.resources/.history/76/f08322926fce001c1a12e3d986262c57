@@ -1,0 +1,95 @@
+/*
+ * ArrayPassenger.c
+ *
+ *  Created on: 7 may. 2022
+ *      Author: tobic
+ */
+
+#include "ArrayPassenger.h"
+
+/**
+ * @fn int initPassengers(Passenger[], int)
+ * @brief
+ * Recibe un array de Pasajeros y el tamaño del mismo para inicializarlo.
+ * @param aPassenger
+ * @param len
+ * @return Retorna -1 si fallo la y 0 si esta todo OK
+ */
+int initPassengers(Passenger aPassenger[], int len)
+{
+	int rtn = -1;
+	if(aPassenger != NULL && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			aPassenger[i].isEmpty = LIBRE;
+		}
+		rtn = 0;
+	}
+
+	return rtn;
+}
+
+
+
+int addPassengers(Passenger aPassenger[], int len, int id, char name[], char lastName[],
+		float price, int typePassenger, char flycode[])
+{
+	int rtn = -1;
+	Passenger aux;
+
+	if(aPassenger != NULL && len > 0 && id >= 0 && name != NULL && lastName != NULL
+		&& price > 0 && typePassenger >= 0 && flycode != NULL)
+	{
+		aux.id = id;
+		strcpy(aux.name, name);
+		strcpy(aux.lastname, lastName);
+		aux.price = price;
+		aux.typePasenger = typePassenger;
+		strcpy(aux.flycode ,flycode);
+		aux.isEmpty = OCUPADO;
+
+
+
+		rtn = 0;
+	}
+
+
+	return rtn;
+}
+
+
+int
+
+
+
+void printPassenger(Passenger passenger)
+{
+	printf("%5d\n", passenger.isEmpty);
+}
+
+int printAllPassengers(Passenger aPassengers[], int len)
+{
+	int i;
+	int rtn = 0;
+	int cant = 0;
+
+
+	puts("\n\t> LISTADO");
+	printf("%5s\n\n", "IS EMPTY");
+
+	if (aPassengers != NULL && len > 0)
+	{
+		for (i = 0; i < len; i++) {
+
+				printPassenger(aPassengers[i]);
+				cant++;
+		}
+	}
+
+	if (cant > 0) {
+		rtn = 1;
+	}
+
+	return rtn;
+}

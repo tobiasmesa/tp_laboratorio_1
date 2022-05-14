@@ -1,0 +1,22 @@
+/*
+ ============================================================================
+ Name        : pruebaFunciones.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "practica.h"
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int num;
+	getInt("Ingresar un numero\n", 3, 0, 10, "Error reingresa el num", &num);
+
+
+	return EXIT_SUCCESS;
+}

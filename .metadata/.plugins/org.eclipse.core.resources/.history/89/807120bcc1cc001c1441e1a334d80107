@@ -1,0 +1,15 @@
+/*
+ * Pantallas_Contrataciones.c
+ *
+ *  Created on: 3 may. 2022
+ *      Author: tobic
+ */
+
+#include "Pantallas_Contrataciones.h"
+
+int altaContrataciones(Pantalla arrayP[], int TAM_P, Contrataciones arraC[], int TAM_C)
+{
+	int rtn = 0;
+
+	return rtn;
+}

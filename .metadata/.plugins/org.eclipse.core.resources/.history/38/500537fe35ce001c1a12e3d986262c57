@@ -1,0 +1,26 @@
+/*
+ ============================================================================
+ Name        : TP_2.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : TP2 Laboratorio 1
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "utn.h"
+#include "ArrayPassenger.h"
+
+#define Q_PASSENGERS 5 // Quantity PASSENGERS
+
+int main(void) {
+	setbuf(stdout, NULL);
+	puts("TP2"); /* prints TO2 */
+	Passenger arrayPassengers[Q_PASSENGERS];
+	initPassengers(arrayPassengers, Q_PASSENGERS);
+	printAllPassengers(arrayPassengers, Q_PASSENGERS);
+
+	return EXIT_SUCCESS;
+}

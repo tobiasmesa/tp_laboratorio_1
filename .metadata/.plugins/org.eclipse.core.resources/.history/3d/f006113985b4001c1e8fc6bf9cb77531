@@ -1,0 +1,13 @@
+/*
+ * utilities.c
+ *
+ *  Created on: 4 abr. 2022
+ *      Author: tobic
+ */
+
+#include "utilities.h"
+
+void printText(char const *cadena1){
+  printf(cadena1);
+}
+

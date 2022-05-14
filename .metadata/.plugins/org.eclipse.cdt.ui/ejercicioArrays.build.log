@@ -1,0 +1,19 @@
+22:12:37 **** Incremental Build of configuration Debug for project ejercicioArrays ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ejercicioArrays.o" "..\\src\\ejercicioArrays.c" 
+..\src\ejercicioArrays.c: In function 'main':
+..\src\ejercicioArrays.c:30:10: warning: format '%c' expects argument of type 'char *', but argument 2 has type 'int' [-Wformat=]
+  scanf("%c", letra);
+          ^
+..\src\ejercicioArrays.c:34:31: warning: passing argument 1 of 'buscarMaxArray' makes integer from pointer without a cast [-Wint-conversion]
+    printf("%d",buscarMaxArray(numeros));
+                               ^~~~~~~
+..\src\ejercicioArrays.c:20:5: note: expected 'int' but argument is of type 'int *'
+ int buscarMaxArray(int num);
+     ^~~~~~~~~~~~~~
+..\src\ejercicioArrays.c:42:3: error: label at end of compound statement
+   default:
+   ^~~~~~~
+
+22:12:38 Build Failed. 1 errors, 2 warnings. (took 189ms)
+

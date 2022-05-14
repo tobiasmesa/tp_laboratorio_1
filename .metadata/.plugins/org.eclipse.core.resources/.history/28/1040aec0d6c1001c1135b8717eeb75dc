@@ -1,0 +1,44 @@
+/*
+ ============================================================================
+ Name        : clase19-4.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : TP1 Laboratorio 1
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "utn.h"
+
+#define CANT 10
+
+struct eMujer{
+
+	char tocar[30];
+};
+
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+
+	struct eMujer minita;
+	minita.tocar = "a";
+
+	printf("%s", minita.tocar)
+
+
+
+}
+
+
+
+
+
+
+
+
+
+

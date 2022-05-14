@@ -1,0 +1,58 @@
+/*
+ * Pantallas_Contrataciones.c
+ *
+ *  Created on: 3 may. 2022
+ *      Author: tobic
+ */
+
+#include "Pantallas_Contrataciones.h"
+
+int altaContrataciones(Pantalla arrayP[], int TAM_P, Contrataciones arrayC[], int TAM_C)
+{
+	int rtn = 0;
+	int idBuscar;
+	int indexPantalla;
+	int indexContratacionesLibre;
+	Contrataciones aux;
+		if (arrayP != NULL) {
+			if (arrayC != NULL) {
+				if (TAM_P >= 0 || TAM_C >= 0) {
+
+					indexContratacionesLibre = eContrataciones_ObtenerIndexLibre(arrayC, TAM_C);
+					//VALIDO QUE MI ARRAY DE CONTRATACIONES TENGA ESPACIO
+					if (indexContratacionesLibre != -1) {
+
+						//LISTAR PANTALLAS
+						if (ePantalla_MostrarTodos(arrayP, TAM_P)) {
+
+							//OBTENER ID - INDEX ARRAY
+							idBuscar = Get_Int("Ingrese ID de pantalla: ", "Error. Reingrese. ");
+							indexPantalla = ePantalla_BuscarPorID(arrayP, TAM_P, idBuscar);
+
+							//SI LOGRE ENCONTRAR EL INDEX
+							if (indexPantalla != -1) {
+								//DOY DE ALTA UNA CONTRATACIONES
+								aux = eContrataciones_CargarDatos();
+								aux.FK_idPantalla = arrayP[indexPantalla].id; //RELACION DE CONTRATACION A PANTALLA
+								aux.isEmpty = OCUPADO;
+
+								//VUELVO AUXILIAR EN ARRAY
+								arrayC[indexContratacionesLibre] = aux;
+
+								rtn = 1;
+							}
+						}
+					}
+				} else {
+					rtn = -3;
+				}
+			} else {
+				rtn = -2;
+			}
+		} else {
+			rtn = -1;
+		}
+		return rtn;
+	return rtn;
+}
+

@@ -1,0 +1,9 @@
+21:17:01 **** Rebuild of configuration Debug for project clase19-4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\clase19-4.o" "..\\src\\clase19-4.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Producto.o" "..\\src\\Producto.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -o clase19-4.exe "src\\Producto.o" "src\\clase19-4.o" "src\\utn.o" 
+
+21:17:02 Build Finished. 0 errors, 0 warnings. (took 872ms)
+

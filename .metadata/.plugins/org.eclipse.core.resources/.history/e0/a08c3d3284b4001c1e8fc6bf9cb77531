@@ -1,0 +1,28 @@
+/*
+ ============================================================================
+ Name        : TP_01.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : Your copyright notice
+ Description : TP-01
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void mostrarTexto(char const *a);
+
+int main(void) {
+
+	setbuf(stdout, NULL);
+chatr
+	mostrarTexto('hola');
+
+	return EXIT_SUCCESS;
+}
+
+void mostrarTexto(char const *a)
+{
+	printf("%s", *a);
+}

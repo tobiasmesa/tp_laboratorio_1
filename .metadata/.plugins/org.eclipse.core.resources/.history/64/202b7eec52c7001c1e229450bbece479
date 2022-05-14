@@ -1,0 +1,109 @@
+/*
+ * Producto.c
+ *
+ *  Created on: 26 abr. 2022
+ *      Author: tobic
+ */
+
+#include "Producto.h"
+#include "utn.h"
+
+static int generarId (void);
+
+int pr_imprimirArrayProductos (Producto arrayProductos[], int tam)
+{
+	int rtn = -1;
+	if(arrayProductos != NULL && tam > 0)
+	{
+		for(int i = 0; i < tam; i++) {
+			if(arrayProductos[i].isEmpty == OCUPADO)
+				{
+					pr_imprimirProducto(arrayProductos[i]);
+				}
+			}
+		rtn = 0;
+	}
+	return rtn;
+}
+int pr_imprimirProducto(Producto produc)
+{
+	printf("ID: %d\n"
+			"Nombre del producto: %s\n"
+			"Descripcion del producto: %s\n "
+			"Precio: %d\n "
+			"isEmpty: %d\n\n"
+			,produc.id, produc.nombre, produc.descripcion, produc.precio, produc.isEmpty);
+	return 0;
+}
+
+
+int pr_iniciarArrayProducto(Producto arrayProductos[], int tam)
+{
+	int rtn = -1;
+	if(arrayProductos != NULL && tam > 0)
+	{
+		for(int i = 0; i < tam; i++){
+			pr_cargarIsEmpty(&arrayProductos[i]);
+		}
+		rtn = 0;
+	}
+
+	return rtn;
+}
+int pr_cargarIsEmpty(Producto* produc){
+	produc->isEmpty = LIBRE;
+	return 0;
+}
+
+int pr_alta(Producto arrayProductos[],int indice)
+{
+	int retorno = -1;
+	Producto auxiliarProducto;
+	if(arrayProductos != NULL && indice >= 0)
+	{
+			auxiliarProducto.id = generarId();
+			auxiliarProducto.isEmpty = OCUPADO;
+			arrayProductos[indice] = pr_CargarUnProducto();
+			retorno = 0;
+	}
+
+	return retorno;
+}
+
+int pr_buscarProductoLibre(Producto arrayProductos[],int tam)
+{
+	int retorno = -1;
+	int i;
+	if(arrayProductos != NULL && tam > 0)
+	{
+		for (i = 0; i < tam; ++i)
+		{
+			if(arrayProductos[i].isEmpty == LIBRE)
+			{
+				retorno = i;
+				break;
+			}
+		}
+	}
+
+
+	return retorno;
+}
+
+Producto pr_CargarUnProducto(void)
+{
+	Producto auxiliarProducto;
+	utn_getString(auxiliarProducto.nombre, sizeof(auxiliarProducto.nombre), "\nIngrese el nombre: ", "\nReingrese el nombre: ", 3);
+	utn_getString(auxiliarProducto.descripcion, sizeof(auxiliarProducto.descripcion), "\nIngrese la descripcion: ", "\nReingrese la descripcion: ", 3);
+	utn_getNumeroRange(&auxiliarProducto.precio, "\nIngrese el precio del producto", "", 0, 200000, 3);
+
+	return auxiliarProducto;
+}
+
+
+
+static int generarId (void)
+{
+	static int i = 0;
+	return i++;
+}

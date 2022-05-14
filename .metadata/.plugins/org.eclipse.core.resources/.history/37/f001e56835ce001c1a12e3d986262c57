@@ -1,0 +1,40 @@
+/*
+ * ArrayPassenger.h
+ *
+ *  Created on: 7 may. 2022
+ *      Author: tobic
+ */
+
+#ifndef ARRAYPASSENGER_H_
+#define ARRAYPASSENGER_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define LIBRE 0
+#define OCUPADO 1
+#define BAJA -1
+
+typedef struct {
+
+	int id;
+	char name[51];
+	char lastname[51];
+	float price;
+	char flycode[10];
+	int typePasenger;
+	int statusFlight;
+	int isEmpty;
+
+} Passenger;
+
+
+int initPassengers(Passenger aPassenger[], int len);
+
+
+
+
+int printAllPassengers(Passenger aPassengers, int len);
+void printPassenger(Passenger);
+
+#endif /* ARRAYPASSENGER_H_ */

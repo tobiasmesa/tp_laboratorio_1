@@ -1,0 +1,14 @@
+/*
+ * practica.c
+ *
+ *  Created on: 5 abr. 2022
+ *      Author: tobic
+ */
+
+
+#include "practica.h"
+
+int getInt(char mensaje[], int reintentos, int minimo, int maximo, char mensajeError[], int *pNumeroIngresado)
+{
+
+}

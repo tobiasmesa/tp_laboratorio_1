@@ -1,0 +1,65 @@
+/*
+ ============================================================================
+ Name        : TP_2.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : TP2 Laboratorio 1
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "utn.h"
+#include "ArrayPassenger.h"
+
+#define Q_PASSENGERS 5 // Quantity PASSENGERS
+
+int main(void) {
+	setbuf(stdout, NULL);
+	puts("TP2"); /* prints TO2 */
+	Passenger arrayPassengers[Q_PASSENGERS];
+	initPassengers(arrayPassengers, Q_PASSENGERS);
+	int option;
+	do
+	{
+		utn_getNumeroRange(&option, ""
+				"\n 1. ALTA"
+				"\n 2. MODIFICAR"
+				"\n 3. BAJA"
+				"\n 4. INFORMAR"
+				"\n 5. CARGA FORZADA"
+				"\n 0. SALIR"
+				"\nIngrese una opcion: ", "\nIngrese una opcion valida: ", 0, 5, 3);
+		switch(option)
+		{
+		case 1:
+			loadPassenger(arrayPassengers, Q_PASSENGERS);
+			break;
+		case 2:
+			modifyPassenger(arrayPassengers, Q_PASSENGERS);
+			break;
+		case 3:
+
+			break;
+		case 4:
+			printAllPassengers(arrayPassengers, Q_PASSENGERS);
+			break;
+		case 5:
+			loadPassengerAuto(arrayPassengers, Q_PASSENGERS);
+			break;
+		case 0:
+			return 0;
+			break;
+		default:
+			printf("Ingrese una opcion valida!");
+			break;
+		}
+
+	} while(option != 0);
+
+
+
+
+	return EXIT_SUCCESS;
+}

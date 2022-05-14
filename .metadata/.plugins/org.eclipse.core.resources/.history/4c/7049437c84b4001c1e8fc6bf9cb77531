@@ -1,0 +1,29 @@
+/*
+ ============================================================================
+ Name        : TP_01.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : Your copyright notice
+ Description : TP-01
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+void printText(char const *cadena1);
+
+int main(){
+
+	setbuf(stdout, NULL);
+
+
+   pasar_cadena("");
+   return 0;
+}
+
+void printText(char const *cadena1){
+  printf(cadena1);
+}

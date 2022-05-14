@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.cdt.internal.ui.preferences.CTemplatePreferencePage$CEditTemplateDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="205"/>
+		<item key="DIALOG_Y_ORIGIN" value="73"/>
+		<item key="DIALOG_WIDTH" value="609"/>
+		<item key="DIALOG_HEIGHT" value="329"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="esNumerica"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="esNumerica"/>
+			<item value="array"/>
+			<item value="TAM"/>
+			<item value="criterio"/>
+			<item value=" "/>
+			<item value="void printPassenger(Passenger passenger)"/>
+			<item value="idGen"/>
+			<item value="arrayPantalla"/>
+			<item value="TAM_PANTALLA"/>
+			<item value="T"/>
+			<item value="esFlotante"/>
+			<item value="eGen"/>
+			<item value="Contrataciones"/>
+		</list>
+		<list key="replacehistory">
+			<item value="aPassenger"/>
+			<item value="len"/>
+			<item value="order"/>
+			<item value="id"/>
+			<item value="arrayP"/>
+			<item value="arrayPantalla"/>
+			<item value="TAM_P"/>
+			<item value="Contrataciones"/>
+			<item value="eGen"/>
+			<item value=""/>
+			<item value="pa"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="489"/>
+		<item key="DIALOG_Y_ORIGIN" value="315"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

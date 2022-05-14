@@ -1,0 +1,39 @@
+/*
+ * tp01_utilidades.c
+ *
+ *  Created on: 9 abr. 2022
+ *      Author: tobic
+ */
+
+#include "tp01_utilidades.h"
+#define BTC 4606954.55
+
+void precioVuelos(float * aerolinea, float* aerolineab)
+{
+	int opcion;
+	getIntRange("Ingrese la aerolinea a la que ingresara su precio: \n 1. Aerolineas.\n 2. Latam.\nOpcion: \n", 3, 1, 2, "\nIngrese una opcion valida: \n", &opcion);
+	if(opcion == 1)
+	{
+		getFloatPositive(aerolinea, "\nPrecio vuelo Aerolineas: \n", "\nIngrese un precio valido: \n", 10);
+	} else
+	{
+		getFloatPositive(aerolineab, "\nPrecio vuelo Latam: \n", "\nIngrese un precio valido: \n", 10);
+	}
+
+}
+
+
+void calcularCostos(float precio, float km, float *debito, float *credito, float *btc, float *pUnitario)
+{
+
+
+	*debito = subsFloat(precio, multFloat(precio, divFloat(10, 100)));
+	*credito = sumFloat(precio,multFloat(precio,divFloat(25, 100)));
+	*btc = multFloat(precio, BTC);
+	*pUnitario = divFloat(precio, km);
+}
+
+void mostrarCostos(char aerolinea[],float precio, float debito, float credito, float btc, float pUnitario)
+{
+	printf("%s:\na) Precio con tarjeta de débito: %f\nb) Precio con tarjeta de crédito: %f\nc) Precio pagando con bitcoin : %f\nd) Precio unitario: %f\n", aerolinea, debito, credito, btc, pUnitario);
+}

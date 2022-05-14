@@ -1,0 +1,21 @@
+/*
+ * utn.h
+ *
+ *  Created on: 21 abr. 2022
+ *      Author: tobic
+ */
+
+#ifndef UTN_H_
+#define UTN_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static int esNumerica(char* cadena, int limite);
+static int getInt(int* pResultado);
+static int esFlotante(char* cadena);
+static int getFloat(float* pResultado);
+
+
+#endif /* UTN_H_ */

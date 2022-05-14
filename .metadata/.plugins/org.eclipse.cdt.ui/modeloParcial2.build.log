@@ -1,0 +1,8 @@
+19:10:17 **** Rebuild of configuration Debug for project modeloParcial2 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\modeloParcial2.o" "..\\src\\modeloParcial2.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -o modeloParcial2.exe "src\\modeloParcial2.o" "src\\utn.o" 
+
+19:10:18 Build Finished. 0 errors, 0 warnings. (took 772ms)
+

@@ -1,0 +1,16 @@
+/*
+ * operaciones.h
+ *
+ *  Created on: 2 abr. 2022
+ *      Author: tobic
+ */
+
+#ifndef OPERACIONES_H_
+#define OPERACIONES_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "operations.h"
+
+
+#endif /* OPERACIONES_H_ */

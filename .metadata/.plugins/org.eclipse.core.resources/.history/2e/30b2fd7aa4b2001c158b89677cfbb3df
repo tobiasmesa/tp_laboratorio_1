@@ -1,0 +1,24 @@
+/*
+ ============================================================================
+ Name        : TP_01.c
+ Author      : Tobias Mesa
+ Version     :
+ Copyright   : Your copyright notice
+ Description : TP-01
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "operaciones.h"
+
+
+int main(void) {
+
+	setbuf(stdout, NULL);
+
+
+
+	return EXIT_SUCCESS;
+}
