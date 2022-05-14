@@ -297,13 +297,13 @@ int loadPassengerAuto(Passenger aPassenger[], int len)
 	int rtn = -1;
 	if(aPassenger != NULL && len > 0)
 	{
-		addPassengers(aPassenger, len, getId(), "Juan", "bravo", 10.6, VIP, "NB123", 1);
-		addPassengers(aPassenger, len, getId(), "Matias", "abc", 10.6, PRIMERA, "CB123", 0);
-		addPassengers(aPassenger, len, getId(), "Bauti", "okey", 10.6, ECONOMICA, "ZB3", 1);
-		addPassengers(aPassenger, len, getId(), "Bell", "bkey", 200, PRIMERA, "AB123", 0);
-		addPassengers(aPassenger, len, getId(), "Gudi", "zzz", 10.6, VIP, "AB123", 1);
-		addPassengers(aPassenger, len, getId(), "Gena", "aaaa", 10, ECONOMICA, "AB123", 0);
-		addPassengers(aPassenger, len, getId(), "Pope", "aaaa", 600, VIP, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Juan", "Bravo", 10.6, VIP, "NB123", 1);
+		addPassengers(aPassenger, len, getId(), "Matias", "Alvarez", 10.6, PRIMERA, "CB123", 0);
+		addPassengers(aPassenger, len, getId(), "Bautista", "Rodriguez", 10.6, ECONOMICA, "ZB3", 1);
+		addPassengers(aPassenger, len, getId(), "Eugenio", "Alvarez", 20.0, PRIMERA, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Ignacio", "Gudar", 10.6, VIP, "AB123", 1);
+		addPassengers(aPassenger, len, getId(), "Genaro", "Soria", 10, ECONOMICA, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Tobias", "Mesa", 60.99, VIP, "AB123", 0);
 		rtn = 0;
 	}
 	return rtn;
