@@ -22,13 +22,5 @@ int getInt(int* pResultado);
 int utn_getString(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 int esTexto(char* cadena,int longitud);
 int getString(char* cadena, int longitud);
-int utn_getAlfaNum(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
-int esAlfanumerica(char* cadena,int longitud);
-
-
-float sumFloat(float a, float b);
-float subsFloat(float a, float b);
-float multFloat(float a, float b);
-float divFloat(float a, float b);
 
 #endif /* UTN_H_ */
