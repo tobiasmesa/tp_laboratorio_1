@@ -13,9 +13,9 @@
 #include "utn.h"
 #include "ArrayPassenger.h"
 
-#define Q_PASSENGERS 10 // Quantity PASSENGERS
+#define Q_PASSENGERS 2000 // Quantity PASSENGERS
 
-int option2;
+
 
 int main(void) {
 	setbuf(stdout, NULL);
@@ -25,6 +25,7 @@ int main(void) {
 	int option;
 	float sum = 0;
 	float avg = 0;
+	int option2;
 	int counterPassengerOverAvg = 0;
 	do
 	{
