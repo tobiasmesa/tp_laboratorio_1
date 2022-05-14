@@ -42,34 +42,55 @@ int main(void) {
 			loadPassenger(arrayPassengers, Q_PASSENGERS);
 			break;
 		case 2:
-			modifyPassenger(arrayPassengers, Q_PASSENGERS);
+			if(checkPassengers(arrayPassengers, Q_PASSENGERS) == 0)
+			{
+				modifyPassenger(arrayPassengers, Q_PASSENGERS);
+			} else
+			{
+				puts("Ingrese un pasajero!");
+			}
 			break;
 		case 3:
-			removeOnePassenger(arrayPassengers, Q_PASSENGERS);
+			if(checkPassengers(arrayPassengers, Q_PASSENGERS) == 0)
+			{
+				removeOnePassenger(arrayPassengers, Q_PASSENGERS);
+			} else
+			{
+				puts("Ingrese un pasajero!");
+			}
+
 			break;
 		case 4:
-
-			utn_getNumeroRange(&option2, "\n1. Listado de pasajeros ordenado alfabeticamente por apellido y tipo.\n"
-					"2.Total y promedio.\n"
-					"3.Listado de los pajeros por Codigo y estados de vuelo.\n"
-					"4.Salir.\nIngrese la opcion: ", "Error. Reingrese", 1, 4, 3);
-			switch(option2)
+			if(checkPassengers(arrayPassengers, Q_PASSENGERS) == 0)
 			{
-			case 1:
-				sortPassenger(arrayPassengers, Q_PASSENGERS, 0);
-				printAllPassengers(arrayPassengers, Q_PASSENGERS);
-				break;
-			case 2:
-				sumAllPrices(arrayPassengers, Q_PASSENGERS, &sum, &avg, &counterPassengerOverAvg);
-				printf("\nLa suma total de los precios de los vuelos es: $%.2f\n"
-						"\nEl promedio del total de los vuelos es: $%.2f\n\n"
-						"La cantidad de pasajeros sobre el promedio es: %d\n\n\n", sum, avg, counterPassengerOverAvg);
-				break;
-			case 3:
-				break;
-			default:
-				break;
+				utn_getNumeroRange(&option2, "\n1. Listado de pasajeros ordenado alfabeticamente por apellido y tipo.\n"
+									"2.Total y promedio.\n"
+									"3.Listado de los pajeros por Codigo y estados de vuelo.\n"
+									"4.Salir.\nIngrese la opcion: ", "Error. Reingrese", 1, 4, 3);
+							switch(option2)
+							{
+							case 1:
+								sortPassenger(arrayPassengers, Q_PASSENGERS, 0);
+								printAllPassengers(arrayPassengers, Q_PASSENGERS);
+								break;
+							case 2:
+								sumAllPrices(arrayPassengers, Q_PASSENGERS, &sum, &avg, &counterPassengerOverAvg);
+								printf("\nLa suma total de los precios de los vuelos es: $%.2f\n"
+										"\nEl promedio del total de los vuelos es: $%.2f\n\n"
+										"La cantidad de pasajeros sobre el promedio es: %d\n\n\n", sum, avg, counterPassengerOverAvg);
+								break;
+							case 3:
+								sortPassengerByCode( arrayPassengers, Q_PASSENGERS, 0);
+								printActiveFlights(arrayPassengers, Q_PASSENGERS);
+								break;
+							default:
+								break;
+							}
+							} else
+			{
+				puts("Ingrese un pasajero!");
 			}
+
 
 			break;
 		case 5:

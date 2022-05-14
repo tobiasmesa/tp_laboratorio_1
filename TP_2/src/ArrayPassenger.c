@@ -136,6 +136,7 @@ int removePassenger(Passenger aPassenger[], int len, int id){
 			if(aPassenger[i].id == id)
 			{
 				aPassenger[i].isEmpty = BAJA;
+				rtn = 0;
 			}
 		}
 	}
@@ -280,8 +281,8 @@ int loadPassenger(Passenger aPassenger[], int len)
 			&& utn_getString(aux.lastname, sizeof(aux.lastname), "\nIngrese el apellido del pasajero: ", "\nIngrese el apellido nuevamente: ", 3) == 0
 			&& utn_getNumeroFlotante(&aux.price, "\nIngrese el precio del vuelo: " , "Ingrese el precio nuevamente: ", 0, MAX_PRECIO, 3) == 0
 			&& utn_getAlfaNum(aux.flycode, sizeof(aux.flycode), "\nIngrese el codigo del vuelo: ", "\nIngrese el codigo correctamente: ", 3) == 0
-			&& utn_getNumeroRange(&aux.typePasenger, "\nIngrese el tipo de pasajero: ", "\nReingrese el tipo de pasajero [CLASE ECONOMICA (0) / CANCELADO (1)]: ", 0, 2, 3) == 0
-			&& utn_getNumeroRange(&aux.statusFlight, "\nIngrese el estado del vuelo [ACTIVO (0) / VIP (1) / PRIMERA CLASE (2)]: ", "Ingresar estado de vuelo correctamente [ACTIVO (0) / CANCELADO (1)]: ", 0, 1, 3) == 0)
+			&& utn_getNumeroRange(&aux.typePasenger, "\nIngrese el tipo de pasajero [CLASE ECONOMICA (0) / PRIMERA CLASE (1) / VIP (2)]: ", "\nReingrese el tipo de pasajero [CLASE ECONOMICA (0) / PRIMERA CLASE (1) / VIP (2)]: ", 0, 2, 3) == 0
+			&& utn_getNumeroRange(&aux.statusFlight, "\nIngrese el estado del vuelo [ACTIVO (0) / CANCELADO (1)]: ", "Ingresar estado de vuelo correctamente [ACTIVO (0) / CANCELADO (1)]: ", 0, 1, 3) == 0)
 	{
 //////////SEGUIR DESDE ACA - ESTADOS DE VUELO Y CREAR STRUCTURA APÁRTE PARA LOS VUELOS!!!
 		addPassengers(aPassenger, len, getId(), aux.name, aux.lastname, aux.price, aux.typePasenger, aux.flycode, aux.statusFlight);
@@ -300,7 +301,7 @@ int loadPassengerAuto(Passenger aPassenger[], int len)
 		addPassengers(aPassenger, len, getId(), "Matias", "abc", 10.6, PRIMERA, "CB123", 0);
 		addPassengers(aPassenger, len, getId(), "Bauti", "okey", 10.6, ECONOMICA, "ZB3", 1);
 		addPassengers(aPassenger, len, getId(), "Bell", "bkey", 200, PRIMERA, "AB123", 0);
-		addPassengers(aPassenger, len, getId(), "Gudi", "zzz", 10.6, VIP, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Gudi", "zzz", 10.6, VIP, "AB123", 1);
 		addPassengers(aPassenger, len, getId(), "Gena", "aaaa", 10, ECONOMICA, "AB123", 0);
 		addPassengers(aPassenger, len, getId(), "Pope", "aaaa", 600, VIP, "AB123", 0);
 		rtn = 0;
@@ -310,6 +311,7 @@ int loadPassengerAuto(Passenger aPassenger[], int len)
 
 void printPassenger(Passenger p) {
 	char typePassenger[20];
+	char statusFlight[20];
 
 	switch(p.typePasenger)
 	{
@@ -325,7 +327,18 @@ void printPassenger(Passenger p) {
 		default:
 			break;
 	}
-	printf("| %-3d | %-20s | %-20s | %-20s | %-20s | %20f | %20d |\n", p.id, p.name, p.lastname, typePassenger, p.flycode, p.price, p.statusFlight);
+	switch(p.statusFlight)
+	{
+		case 0:
+			strcpy(statusFlight,"ACTIVO");
+			break;
+		case 1:
+			strcpy(statusFlight,"CANCELADO");
+			break;
+		default:
+			break;
+	}
+	printf("| %-3d | %-20s | %-20s | %-20s | %-20s | %20f | %20s |\n", p.id, p.name, p.lastname, typePassenger, p.flycode, p.price, statusFlight);
 }
 
 int printAllPassengers(Passenger aPassengers[], int len)
@@ -353,6 +366,30 @@ int printAllPassengers(Passenger aPassengers[], int len)
 	return rtn;
 }
 
+int printActiveFlights(Passenger aPassengers[], int len)
+{
+	int i;
+	int rtn = 1;
+	int cant = 0;
+
+	printf("| %-3s | %-20s | %-20s | %-20s | %-20s | %20s | %20s |\n\n","id", "Nombre", "Apellido", "Clase de pasajero", "Flycode", "Precio", "Flight Status");
+	if (aPassengers != NULL && len > 0)
+	{
+		for (i = 0; i < len; i++) {
+			if(aPassengers[i].isEmpty == OCUPADO && aPassengers[i].statusFlight == ACTIVO)
+			{
+				printPassenger(aPassengers[i]);
+			}
+				cant++;
+		}
+	}
+
+	if (cant > 0) {
+		rtn = 0;
+	}
+
+	return rtn;
+}
 int modifyPassenger(Passenger aPassengers[], int len)
 {
 	int rtn = -1;
@@ -408,7 +445,6 @@ int modifyPassenger(Passenger aPassengers[], int len)
 	return rtn;
 }
 
-
 int sumAllPrices(Passenger aPassengers[], int len, float *sum, float* avg, int* counterPassenger)
 {
 	int rtn = -1;
@@ -441,5 +477,22 @@ int sumAllPrices(Passenger aPassengers[], int len, float *sum, float* avg, int* 
 	*sum = tot;
 	*counterPassenger = counterP;
 
+	return rtn;
+}
+
+int checkPassengers(Passenger aPassengers[], int len)
+{
+	int rtn = 1;
+	if(aPassengers != NULL && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(aPassengers[i].isEmpty == OCUPADO)
+			{
+				rtn = 0;
+				return rtn;
+			}
+		}
+	}
 	return rtn;
 }
