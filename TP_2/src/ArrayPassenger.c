@@ -6,6 +6,12 @@
  */
 
 #include "ArrayPassenger.h"
+static int getId(void);
+static int getId(void) {
+	static int incrementalId = 0;
+	return incrementalId++;
+}
+
 
 /**
  * @fn int initPassengers(Passenger[], int)
@@ -31,7 +37,7 @@ int initPassengers(Passenger aPassenger[], int len)
 }
 
 int addPassengers(Passenger aPassenger[], int len, int id, char name[], char lastName[],
-float price, int typePassenger, char flycode[])
+float price, int typePassenger, char flycode[], int statusFlight)
 {
 	int rtn = -1;
 	Passenger aux;
@@ -39,7 +45,7 @@ float price, int typePassenger, char flycode[])
 
 	if(index != -1) {
 		if(aPassenger != NULL && len > 0 && id >= 0 && name != NULL && lastName != NULL
-				&& price > 0 && typePassenger >= 0 && flycode != NULL)
+				&& price > 0 && typePassenger >= 0 && flycode != NULL && (statusFlight == 0 || statusFlight == 1))
 			{
 				aux.id = id;
 				strcpy(aux.name, name);
@@ -48,6 +54,7 @@ float price, int typePassenger, char flycode[])
 				aux.typePasenger = typePassenger;
 				strcpy(aux.flycode ,flycode);
 				aux.isEmpty = OCUPADO;
+				aux.statusFlight = statusFlight;
 
 				aPassenger[index] = aux;
 
@@ -94,9 +101,34 @@ int findPassengerById(Passenger aPassenger[], int len, int id)
 	return rtn;
 }
 
-int removePassenger(Passenger aPassenger[], int len, int id)
+int removeOnePassenger (Passenger aPassenger[], int len)
 {
 	int rtn = -1;
+
+	int id;
+	if(aPassenger != NULL && len > 0)
+	{
+		if(printAllPassengers(aPassenger, len) == 0)
+		{
+			utn_getNumeroRange(&id, "\nIngrese el ID a eliminar: ", "\nError! Reingrese!", 0, 10000, 3);
+			if(findPassengerById(aPassenger, len, id) == -1)
+			{
+				utn_getNumeroRange(&id, "\nIngrese el ID a eliminar nuevamente: ", "\nError! Reingrese!", 0, 10000, 3);
+			}
+			else {
+				removePassenger(aPassenger, len, id);
+				rtn = 0;
+			}
+
+
+		}
+	}
+	return rtn;
+}
+
+int removePassenger(Passenger aPassenger[], int len, int id){
+	int rtn = -1;
+
 	if(aPassenger != NULL && len > 0 && id > -1)
 	{
 		for(int i = 0; i < len; i++)
@@ -126,12 +158,23 @@ int sortPassenger(Passenger aPassenger[], int len, int order)
 							if (aPassenger[i].isEmpty == OCUPADO
 									&& aPassenger[j].isEmpty == OCUPADO) {
 								//order DE ORDENAMIENTO
-								if (aPassenger[i].id > aPassenger[j].id) {
+
+								if (aPassenger[i].lastname[0] > aPassenger[j].lastname[0]) {
 									//INTERCAMBIO POSICIONES EN aPassenger
 									aux = aPassenger[i];
 									aPassenger[i] = aPassenger[j];
 									aPassenger[j] = aux;
 								}
+								if(aPassenger[i].lastname[0] == aPassenger[j].lastname[0])
+								{
+									if(aPassenger[i].typePasenger < aPassenger[j].typePasenger)
+									{
+										aux = aPassenger[i];
+										aPassenger[i] = aPassenger[j];
+										aPassenger[j] = aux;
+									}
+								}
+
 							}
 						}
 					}
@@ -144,11 +187,20 @@ int sortPassenger(Passenger aPassenger[], int len, int order)
 							if (aPassenger[i].isEmpty == OCUPADO
 									&& aPassenger[j].isEmpty == OCUPADO) {
 								//order DE ORDENAMIENTO
-								if (aPassenger[i].id < aPassenger[j].id) {
+								if (aPassenger[i].lastname[0] < aPassenger[j].lastname[0]) {
 									//INTERCAMBIO POSICIONES EN aPassenger
 									aux = aPassenger[i];
 									aPassenger[i] = aPassenger[j];
 									aPassenger[j] = aux;
+								}
+								if(aPassenger[i].lastname[0] == aPassenger[j].lastname[0])
+								{
+									if(aPassenger[i].typePasenger < aPassenger[j].typePasenger)
+									{
+										aux = aPassenger[i];
+										aPassenger[i] = aPassenger[j];
+										aPassenger[j] = aux;
+									}
 								}
 							}
 						}
@@ -178,8 +230,9 @@ int sortPassengerByCode(Passenger aPassenger[], int len, int order)
 									//PREGUNTO POR ESTADO "OCUPADO" DE AMBOS
 									if (aPassenger[i].isEmpty == OCUPADO
 											&& aPassenger[j].isEmpty == OCUPADO) {
-										//order DE ORDENAMIENTO
-										if (aPassenger[i].flycode > aPassenger[j].flycode) {
+
+
+										if (aPassenger[i].flycode[0] > aPassenger[j].flycode[0]) {
 											//INTERCAMBIO POSICIONES EN aPassenger
 											aux = aPassenger[i];
 											aPassenger[i] = aPassenger[j];
@@ -197,7 +250,7 @@ int sortPassengerByCode(Passenger aPassenger[], int len, int order)
 									if (aPassenger[i].isEmpty == OCUPADO
 											&& aPassenger[j].isEmpty == OCUPADO) {
 										//order DE ORDENAMIENTO
-										if (aPassenger[i].flycode < aPassenger[j].flycode) {
+										if (aPassenger[i].flycode[0] < aPassenger[j].flycode[0]) {
 											//INTERCAMBIO POSICIONES EN aPassenger
 											aux = aPassenger[i];
 											aPassenger[i] = aPassenger[j];
@@ -217,8 +270,8 @@ int sortPassengerByCode(Passenger aPassenger[], int len, int order)
 	return rtn;
 }
 
+int loadPassenger(Passenger aPassenger[], int len)
 
-int loadPassenger(void)
 {
 	int rtn = -1;
 	Passenger aux;
@@ -226,43 +279,167 @@ int loadPassenger(void)
 	if(utn_getString(aux.name, sizeof(aux.name), "\nIngrese el nombre del pasajero: ", "\nIngrese el nombre correctamente: ", 3) == 0
 			&& utn_getString(aux.lastname, sizeof(aux.lastname), "\nIngrese el apellido del pasajero: ", "\nIngrese el apellido nuevamente: ", 3) == 0
 			&& utn_getNumeroFlotante(&aux.price, "\nIngrese el precio del vuelo: " , "Ingrese el precio nuevamente: ", 0, MAX_PRECIO, 3) == 0
-			&& utn_getAlfaNum(aux.flycode, sizeof(aux.flycode), "\nIngrese el codigo del vuelo: ", "\nIngrese el codigo correctamente: ", 3)
-			&& utn_getNumeroRange(&aux.statusFlight, "\nIngrese el estado del vuelo", "Ingresar estado de vuelo correctamente", 0, 5, 3) == 0)
+			&& utn_getAlfaNum(aux.flycode, sizeof(aux.flycode), "\nIngrese el codigo del vuelo: ", "\nIngrese el codigo correctamente: ", 3) == 0
+			&& utn_getNumeroRange(&aux.typePasenger, "\nIngrese el tipo de pasajero: ", "\nReingrese el tipo de pasajero [CLASE ECONOMICA (0) / CANCELADO (1)]: ", 0, 2, 3) == 0
+			&& utn_getNumeroRange(&aux.statusFlight, "\nIngrese el estado del vuelo [ACTIVO (0) / VIP (1) / PRIMERA CLASE (2)]: ", "Ingresar estado de vuelo correctamente [ACTIVO (0) / CANCELADO (1)]: ", 0, 1, 3) == 0)
 	{
 //////////SEGUIR DESDE ACA - ESTADOS DE VUELO Y CREAR STRUCTURA APÁRTE PARA LOS VUELOS!!!
+		addPassengers(aPassenger, len, getId(), aux.name, aux.lastname, aux.price, aux.typePasenger, aux.flycode, aux.statusFlight);
+		rtn = 0;
 	}
 
 	return rtn;
 }
 
-
+int loadPassengerAuto(Passenger aPassenger[], int len)
+{
+	int rtn = -1;
+	if(aPassenger != NULL && len > 0)
+	{
+		addPassengers(aPassenger, len, getId(), "Juan", "bravo", 10.6, VIP, "NB123", 1);
+		addPassengers(aPassenger, len, getId(), "Matias", "abc", 10.6, PRIMERA, "CB123", 0);
+		addPassengers(aPassenger, len, getId(), "Bauti", "okey", 10.6, ECONOMICA, "ZB3", 1);
+		addPassengers(aPassenger, len, getId(), "Bell", "bkey", 200, PRIMERA, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Gudi", "zzz", 10.6, VIP, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Gena", "aaaa", 10, ECONOMICA, "AB123", 0);
+		addPassengers(aPassenger, len, getId(), "Pope", "aaaa", 600, VIP, "AB123", 0);
+		rtn = 0;
+	}
+	return rtn;
+}
 
 void printPassenger(Passenger p) {
-	printf("%5d\n", p.isEmpty);
+	char typePassenger[20];
+
+	switch(p.typePasenger)
+	{
+		case 0:
+			strcpy(typePassenger,"ECONOMICA");
+			break;
+		case 1:
+			strcpy(typePassenger,"PRIMERA");
+			break;
+		case 2:
+			strcpy(typePassenger,"VIP");
+			break;
+		default:
+			break;
+	}
+	printf("| %-3d | %-20s | %-20s | %-20s | %-20s | %20f | %20d |\n", p.id, p.name, p.lastname, typePassenger, p.flycode, p.price, p.statusFlight);
 }
 
 int printAllPassengers(Passenger aPassengers[], int len)
 {
 	int i;
-	int rtn = 0;
+	int rtn = 1;
 	int cant = 0;
 
-
-	puts("\n\t> LISTADO");
-	printf("%5s\n\n", "IS EMPTY");
-
+	printf("| %-3s | %-20s | %-20s | %-20s | %-20s | %20s | %20s |\n\n","id", "name", "lastname", "typePassenger", "p.flycode", "p.price", "p.isEmpty");
 	if (aPassengers != NULL && len > 0)
 	{
 		for (i = 0; i < len; i++) {
-
+			if(aPassengers[i].isEmpty == OCUPADO)
+			{
 				printPassenger(aPassengers[i]);
+			}
 				cant++;
 		}
 	}
 
 	if (cant > 0) {
-		rtn = 1;
+		rtn = 0;
 	}
+
+	return rtn;
+}
+
+int modifyPassenger(Passenger aPassengers[], int len)
+{
+	int rtn = -1;
+	int id;
+	int index;
+	int option;
+	Passenger aux;
+	if(aPassengers != NULL && len > 0)
+	{
+		if(printAllPassengers(aPassengers, len) == 0)
+		{
+			if(utn_getNumeroRange(&id, "Ingrese la ID del pasajero a modificar: ", "Ingrese nuevamente el ID", 0, 1000, 3) == 0)
+			{
+				index = findPassengerById(aPassengers, len, id);
+					if(index != -1)
+					{
+						aux = aPassengers[index];
+						do{
+							utn_getNumeroRange(&option,"\n1. Nombre\n2. Apellido\n3. Precio\n4. Tipo de pasajero\n5. Codigo de Vuelo\n0. Salir\nQue quiere modificar? ", "\nIngrese una opcion correcta! ", 0, 5, 3);
+							switch(option)
+							{
+							case 1:
+								utn_getString(aux.name, sizeof(aux.name), "\nIngrese el nombre a modificar: ", "\nError. Reingrese: ", 3);
+								break;
+							case 2:
+								utn_getString(aux.lastname, sizeof(aux.lastname), "\nIngrese el apellido a modificar: ", "\nError. Reingrese: ", 3);
+								break;
+							case 3:
+								utn_getNumeroFlotante(&aux.price, "\nIngrese el precio nuevo a modificar: ", "\nError. Reingrese: ", 0, 10, 3);
+								break;
+							case 4:
+								utn_getNumeroRange(&aux.typePasenger, "\nIngrese el tipo de pasajero a modficar: ", "\nError. Reingrese: ", 0, 2, 3);
+								break;
+							case 5:
+								utn_getAlfaNum(aux.flycode, sizeof(aux.flycode), "\nIngrese el codigo del vuelo a modificar: ", "\nError. Reingrese: ", 3);
+
+								break;
+							default:
+								break;
+							}
+
+						} while(option != 0);
+						 aPassengers[index] = aux;
+
+					}
+				}
+			}
+
+
+		}
+
+
+	return rtn;
+}
+
+
+int sumAllPrices(Passenger aPassengers[], int len, float *sum, float* avg, int* counterPassenger)
+{
+	int rtn = -1;
+	float tot = 0;
+	int counter = 0;
+	int counterP = 0;
+
+	if(aPassengers != NULL && len > 0)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(aPassengers[i].isEmpty == OCUPADO)
+			{
+				tot += aPassengers[i].price;
+				counter++;
+			}
+		}
+	}
+
+	*avg = divFloat(tot, counter);
+
+	for(int i = 0; i < len; i++)
+	{
+		if(aPassengers[i].isEmpty == OCUPADO && aPassengers[i].price > *avg)
+		{
+			counterP++;
+		}
+	}
+
+	*sum = tot;
+	*counterPassenger = counterP;
 
 	return rtn;
 }
