@@ -33,12 +33,12 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
 	int rtn = 1; // verdadero
 	if(path != NULL && pArrayListPassenger != NULL)
 	{
-			FILE* pArchivo = fopen(path, "r");
-			if(parser_PassengerFromText(pArchivo, pArrayListPassenger) == 0)
-			{
-				rtn = -1;
-			}
-			fclose(pArchivo);
+		FILE *pArchivo = fopen(path, "r");
+		if (pArchivo == NULL || parser_PassengerFromText(pArchivo, pArrayListPassenger) == 0) {
+			rtn = -1;
+		}
+		fclose(pArchivo);
+
 	}
 
     return rtn;
@@ -57,14 +57,14 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 
 		if(path != NULL && pArrayListPassenger != NULL)
 		{
-			FILE *pArchivo = fopen(path, "rb");
-				if (parser_PassengerFromBinary(pArchivo, pArrayListPassenger) == 0)
+				FILE *pArchivo = fopen(path, "rb");
+				if (pArchivo != NULL && parser_PassengerFromBinary(pArchivo, pArrayListPassenger) != 0)
 				{
-					rtn = -1;
+					fclose(pArchivo);
 				}
 				else
 				{
-					fclose(pArchivo);
+					rtn = -1;
 				}
 		}
 

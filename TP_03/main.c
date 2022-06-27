@@ -48,9 +48,16 @@ int main()
             case 1:
             	if(!flagOption1 && !flagOption2)
             	{
-            		 controller_loadFromText("data.csv", listaPasajeros);
-            		 puts("\nYA SE HAN CARGADO LOS PASAJEROS DESDE EL .CSV!");
-            		 flagOption1 = 1;
+            		 if(controller_loadFromText("data.csv", listaPasajeros) == 1)
+            		 {
+            			 puts("\nYA SE HAN CARGADO LOS PASAJEROS DESDE EL .CSV!");
+            			 flagOption1 = 1;
+            		 } else
+            		 {
+            			 puts("\nNO SE HAN CARGADO LOS PASAJEROS!");
+            		 }
+
+
             	} else
             	{
             		puts("\nERROR. YA SE HAN CARGADO LOS PASAJEROS!");
@@ -59,8 +66,14 @@ int main()
             case 2:
             	if(!flagOption2 && !flagOption1)
             	{
-            		controller_loadFromBinary("./data.bin", listaPasajeros);
-            		puts("\nYA SE HAN CARGADO LOS PASAJEROS DESDE EL .BIN!");
+            		if(controller_loadFromBinary("data.bin", listaPasajeros) == 1)
+            		{
+            			puts("\nYA SE HAN CARGADO LOS PASAJEROS DESDE EL .BIN!");
+            		} else
+            		{
+            			puts("\nNO SE HAN CARGADO LOS PASAJEROS!");
+            		}
+
             	} else
             	{
             		puts("\nERROR. YA SE HAN CARGADO LOS PASAJEROS!");
@@ -102,14 +115,14 @@ int main()
 
             	break;
             case 8:
-            	if(controller_saveAsText("./data.csv", listaPasajeros))
+            	if(controller_saveAsText("data.csv", listaPasajeros))
             	{
             		puts("\nPASEJEROS GUARDADOS!");
             	}
 
             	break;
             case 9:
-            	if(controller_saveAsBinary("./data.bin", listaPasajeros))
+            	if(controller_saveAsBinary("data.bin", listaPasajeros))
             	{
             		puts("\nPASEJEROS GUARDADOS!");
             	}
